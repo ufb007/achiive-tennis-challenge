@@ -1,3 +1,12 @@
+/**
+ * CalculateScores
+ * 
+ * Calculates scores
+ * 
+ * @function CalculateScores
+ * @param {*} players 
+ * @return {object}
+ */
 function CalculateScores(players) {
     const scores = players.map(({ points }) => points);
     const playerServer = players.find(({ server }) => server);

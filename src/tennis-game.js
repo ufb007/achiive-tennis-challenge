@@ -10,6 +10,14 @@ const players = [
 ];
 let tennisPlayers = [...TennisPlayers];
 
+/**
+ * Start Process
+ * 
+ * Begins the process
+ * 
+ * @method StartProcess
+ * @void
+ */
 async function StartProcess() {
     console.clear();
     
@@ -29,6 +37,15 @@ async function StartProcess() {
     Play(selectedPlayers);
 }
 
+/**
+ * ChoosePlayers
+ * 
+ * Prompt Options to select from
+ * a list of players
+ * 
+ * @method ChoosePlayers
+ * @returns Promise
+ */
 function ChoosePlayers() {
     return new Promise(async (resolve, reject) => {
         let index = 0;
@@ -53,6 +70,14 @@ function ChoosePlayers() {
     });
 }
 
+/**
+ * SelectServer
+ * 
+ * Select who will be serving
+ * 
+ * @function SelectServer
+ * @returns Promise
+ */
 function SelectServer(selectedPlayers) {
     return new Promise(async (resolve, reject) => {
         const response = await ListSelect('Who is the serving?', selectedPlayers);
@@ -63,6 +88,15 @@ function SelectServer(selectedPlayers) {
     });
 }
 
+/**
+ * Play
+ * 
+ * Game starts with options to select
+ * who wins points
+ * 
+ * @function Play
+ * @void
+ */
 async function Play(selectedPlayers) {
     const [player1, player2] = players;
 
