@@ -1,4 +1,4 @@
-# Archiive Tennis game challenge
+# Achiive Tennis game challenge
 
 ### The Challenge
 Create a one game tennis simulation
