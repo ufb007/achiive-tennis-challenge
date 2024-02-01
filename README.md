@@ -9,7 +9,7 @@ Create a one game tennis simulation
     - Small code base and easy setup
     - Used CLI Prompts to simulate game
     - Used Jest for testing
-    - There is no error handlind as no input from user is required, only options to select from
+    - No error handling as no input from user is required, only options to select from
 
 ### Install Node modules
 ```bash
