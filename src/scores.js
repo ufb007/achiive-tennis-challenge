@@ -1,6 +1,7 @@
-function CalculateScores(winnerOfPoint, players) {
+function CalculateScores(players) {
     const scores = players.map(({ points }) => points);
-    const playerWinnerOfPoint = players.find(({ name }) => winnerOfPoint === name);
+    const playerServer = players.find(({ server }) => server);
+    const playerNonServer = players.find(({ server }) => !server);
 
     let response = {
         finished: false,
@@ -12,6 +13,8 @@ function CalculateScores(winnerOfPoint, players) {
     let message = 'Game Point';
 
     if (scores[0] >= 3 && scores[1] <= 2 || scores[1] >= 3 && scores[0] <= 2) {
+        message = playerServer.points < playerNonServer.points ? 'Break Point' : 'Game Point';
+
         response = { ...response, message }
     }
 
@@ -38,6 +41,8 @@ function CalculateScores(winnerOfPoint, players) {
         (scores[0] === 4 && scores[1] === 3) || 
         (scores[1] === 4 && scores[0] === 3)
     ) {
+        message = playerServer.points < playerNonServer.points ? 'Break Point' : 'Game Point';
+        
         response = {
             ...response,
             message

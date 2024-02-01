@@ -41,7 +41,7 @@ function ChoosePlayers() {
 
             console.clear();
 
-            players[index] = { ...players[index], name: response.command }
+            players[index] = {...players[index], name: response.command}
 
             //remove the player that has been selected from the list so you cannot select same name
             tennisPlayers = tennisPlayers.filter(player => player != response.command)
@@ -50,7 +50,7 @@ function ChoosePlayers() {
         }
 
         resolve(true);
-    })
+    });
 }
 
 function SelectServer(selectedPlayers) {
@@ -64,7 +64,9 @@ function SelectServer(selectedPlayers) {
 }
 
 async function Play(selectedPlayers) {
-    console.log(`\n--- ${chalk.yellow(players[0].name)} ${chalk.blue('vs')} ${chalk.yellow(players[1].name)} ---\n`);
+    const [player1, player2] = players;
+
+    console.log(`\n--- ${chalk.yellow(player1.name)} ${chalk.blue('vs')} ${chalk.yellow(player2.name)} ---\n`);
 
     let completed = false;
 
@@ -80,14 +82,14 @@ async function Play(selectedPlayers) {
             }
         });
 
-        const {finished, message, points, winner} = CalculateScores(response.command, players);
+        const {finished, message, points, winner} = CalculateScores(players);
 
         completed = finished;
 
         players.forEach((player, index) => player.points = points[index]);
 
         if (!finished) {
-            console.log(`\n--- ${chalk.yellow(players[0].name)} ${scoring[points[0]]} - ${scoring[points[1]]} ${chalk.yellow(players[1].name)} ${chalk.blue(message.toUpperCase())} ---\n`);
+            console.log(`\n--- ${player1.server ? '[-]' : ''} ${chalk.yellow(player1.name)} ${scoring[points[0]]} - ${scoring[points[1]]} ${chalk.yellow(player2.name)} ${player2.server ? '[-]' : ''} ${chalk.blue(message.toUpperCase())} ---\n`);
         } else {
             console.log(`\n--- ${chalk.blue('Winner:')} ${chalk.yellow(winner)} ---\n`);
         }
