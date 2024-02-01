@@ -3,9 +3,10 @@ import { ListSelect } from './prompts.js';
 import TennisPlayers from './tennis-players.js';
 import { CalculateScores } from './scores.js';
 
+const points = ['love', 'fifteen', 'thirty', 'forty', 'advantage'];
 const players = [
-    { name: null, points: 0, score: 'love', server: false },
-    { name: null, points: 0, score: 'love', server: false }
+    { name: null, points: 3, score: 'love', server: false },
+    { name: null, points: 3, score: 'love', server: false }
 ];
 let tennisPlayers = [...TennisPlayers];
 
@@ -66,7 +67,9 @@ async function Play(selectedPlayers) {
 
     console.log('Show response - ', response)
 
-    CalculateScores(response.command, players)
+    const scores = CalculateScores(response.command, players)
+
+    console.log(scores.message)
 }
 
 export default StartProcess;
